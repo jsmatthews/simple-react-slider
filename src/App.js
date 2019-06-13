@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 
-import Slider from './Slider';
+import Slider from './Slider'
 
 class App extends Component {
 	render() {
@@ -9,8 +9,8 @@ class App extends Component {
 			<div className="App">
 				<Slider />
 			</div>
-		);
+		)
 	}
 }
 
-export default App;
+export default App

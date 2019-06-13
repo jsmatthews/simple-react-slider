@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './Slider.css';
+import React, { Component } from 'react'
+import './Slider.css'
 
 const SliderProgressLine = (props) => {
     return (
@@ -29,11 +29,11 @@ const SliderContainer = (props) => {
 
 export default class Slider extends Component {
     constructor(props) {
-        super(props);
-        this.mouseDown = this.mouseDown.bind(this);
-        this.mouseUp = this.mouseUp.bind(this);
-        this.mouseMove = this.mouseMove.bind(this);
-        this.recalculatePosition = this.recalculatePosition.bind(this);
+        super(props)
+        this.mouseDown = this.mouseDown.bind(this)
+        this.mouseUp = this.mouseUp.bind(this)
+        this.mouseMove = this.mouseMove.bind(this)
+        this.recalculatePosition = this.recalculatePosition.bind(this)
         
         this.state = {
             containerConfig: {
@@ -50,43 +50,43 @@ export default class Slider extends Component {
     //TODO: Add steps option
 
     recalculatePosition(event) {
-        const pointerElement = document.getElementById(this.state.pointerConfig.id);
-        const containerElement = document.getElementById(this.state.containerConfig.id);
+        const pointerElement = document.getElementById(this.state.pointerConfig.id)
+        const containerElement = document.getElementById(this.state.containerConfig.id)
 
-        var mousePosition = event.clientX;
-        var distanceFromParentToWindow = containerElement.offsetLeft;
-        var relativeDistance = mousePosition - distanceFromParentToWindow;
-        var relativeDistanceAsPercentage = (relativeDistance / containerElement.offsetWidth) * 100;
+        var mousePosition = event.clientX
+        var distanceFromParentToWindow = containerElement.offsetLeft
+        var relativeDistance = mousePosition - distanceFromParentToWindow
+        var relativeDistanceAsPercentage = (relativeDistance / containerElement.offsetWidth) * 100
 
-        if (relativeDistanceAsPercentage < 0) relativeDistanceAsPercentage = 0;
-        if (relativeDistanceAsPercentage > 100) relativeDistanceAsPercentage = 100;
+        if (relativeDistanceAsPercentage < 0) relativeDistanceAsPercentage = 0
+        if (relativeDistanceAsPercentage > 100) relativeDistanceAsPercentage = 100
 
-        pointerElement.style.left = relativeDistanceAsPercentage + "%";
+        pointerElement.style.left = relativeDistanceAsPercentage + "%"
 
-        const pointerConfig = this.state.pointerConfig;
-        Object.assign(pointerConfig, { value: Math.round(relativeDistanceAsPercentage) });
-        this.setState(pointerConfig);
+        const pointerConfig = this.state.pointerConfig
+        Object.assign(pointerConfig, { value: Math.round(relativeDistanceAsPercentage) })
+        this.setState(pointerConfig)
 
-        console.log(relativeDistanceAsPercentage, this.state.pointerConfig.value);
+        console.log(relativeDistanceAsPercentage, this.state.pointerConfig.value)
     }
 
     mouseDown(event) {
-        const pointerConfig = this.state.pointerConfig;
-        Object.assign(pointerConfig, { isDown: true });
-        this.setState(pointerConfig);
-        this.recalculatePosition(event);
+        const pointerConfig = this.state.pointerConfig
+        Object.assign(pointerConfig, { isDown: true })
+        this.setState(pointerConfig)
+        this.recalculatePosition(event)
     }
 
     mouseUp(event) {
-        const pointerConfig = this.state.pointerConfig;
-        Object.assign(pointerConfig, { isDown: false });
-        this.setState(pointerConfig);
+        const pointerConfig = this.state.pointerConfig
+        Object.assign(pointerConfig, { isDown: false })
+        this.setState(pointerConfig)
     }
 
     mouseMove(event) {
-        event.preventDefault();
+        event.preventDefault()
         if (this.state.isDown) {
-            this.recalculatePosition(event);
+            this.recalculatePosition(event)
         }
     }
 
